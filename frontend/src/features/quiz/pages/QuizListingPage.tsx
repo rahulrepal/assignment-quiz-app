@@ -1,5 +1,4 @@
 import {
-  QuizNavbar,
   QuizCard,
   QuizzesSkeleton,
 } from "@/features/quiz/components";
@@ -7,6 +6,7 @@ import { useGetQuizzesQuery } from "../store/quiz.api";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import { Navbar } from "@/components/shared";
 
 export interface QuizListingPageProps {}
 
@@ -23,7 +23,7 @@ export function QuizListingPage({}: QuizListingPageProps) {
   const quizzes = data?.data ?? [];
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      <QuizNavbar />
+      <Navbar />
       <main className="max-w-4xl md:w-4xl mx-auto p-4 space-y-6">
         <div className="space-y-2">
           <h1 className="text-2xl font-bold text-gray-900">
