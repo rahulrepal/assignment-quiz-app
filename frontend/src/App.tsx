@@ -7,6 +7,7 @@ import {
   QuizListingPage,
   QuizResultPage,
 } from "@/features/quiz/pages";
+import { LoginPage } from "@/features/auth/pages";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Route path="/" element={<QuizListingPage />} />
         <Route path="/quizzes/:quizId" element={<QuizDetailsPage />} />
         <Route path="/quizzes/:quizId/result" element={<QuizResultPage />} />
-        <Route path="/quizzes/login" element={<h1>Login page</h1>} />
+        <Route path="/quizzes/login" element={<LoginPage />} />
         <Route
           path="/quizzes/create"
           element={

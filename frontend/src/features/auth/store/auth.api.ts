@@ -3,11 +3,11 @@ import { baseApi } from "@/store/base.api";
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation<
-      { token: string },
+      { access_token: string },
       { username: string; password: string }
     >({
       query: (credentials) => ({
-        url: "/auth/login",
+        url: "/api/auth/login",
         method: "POST",
         body: credentials,
       }),

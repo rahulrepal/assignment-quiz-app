@@ -2,7 +2,7 @@ export interface QuizResultPageProps {}
 
 export function QuizResultPage({}: QuizResultPageProps) {
   return (
-    <div>QuizResultPage</div>
+    <div className="min-h-screen bg-gray-50">QuizResultPage</div>
   )
 };
 
