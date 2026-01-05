@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./components/shared/ProtectedRoute";
+import { ToastContainer } from "react-toastify";
 import {
   QuizCreatorPage,
   QuizDetailsPage,
@@ -24,6 +25,12 @@ function App() {
           }
         />
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar
+        theme="colored"
+      />
     </BrowserRouter>
   );
 }
