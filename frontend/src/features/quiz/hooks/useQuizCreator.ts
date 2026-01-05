@@ -175,6 +175,7 @@ export function useQuizCreator() {
         // Optionally, reset the form or navigate
         setTitle("");
         setQuestions([]);
+        return result.id;
       }
     } catch (error) {
       toast.error("Failed to create quiz. Please try again.");
