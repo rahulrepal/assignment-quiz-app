@@ -8,6 +8,7 @@ import {
   QuizResultPage,
 } from "@/features/quiz/pages";
 import { LoginPage } from "@/features/auth/pages";
+import { PageNotFound } from "./components/shared";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
       <ToastContainer
         position="top-right"
