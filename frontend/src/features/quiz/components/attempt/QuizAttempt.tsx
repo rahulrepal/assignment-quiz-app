@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
+// FIXME: Can be divided into components
 export interface QuizAttemptProps {
   quiz: Quiz;
 }
@@ -30,7 +31,7 @@ export function QuizAttempt({ quiz }: QuizAttemptProps) {
   const submitQuizHandler = async () => {
     const result = await submitQuiz();
     if (result) {
-      navigate(`/quiz/${quiz.id}/result`, { state: { result } });
+      navigate(`/quizzes/${quiz.id}/result`, { state: result });
       return;
     }
   };
