@@ -1,5 +1,7 @@
 from flask import request
 from flask_restful import Resource
+from flask_jwt_extended import jwt_required, get_jwt, get_jwt_identity
+from pymongo.errors import DuplicateKeyError
 from pydantic import ValidationError
 from app.services.quiz import list_quizzes, create_quiz, get_quiz, evaluate_quiz
 from app.schema.quiz import (
@@ -14,13 +16,20 @@ class QuizResource(Resource):
         quizzes = list_quizzes()
         return {"data": quizzes}, 200
 
+    @jwt_required()
     def post(self):
         try:
+            claims = get_jwt()
+            if claims.get("role") != "admin":
+                return {"error": "Admin privileges required"}, 403
             payload = QuizCreateSchema(**request.get_json())
-            inserted_id = create_quiz(payload, "admin")
+            inserted_id = create_quiz(payload, get_jwt_identity())
             return {"id": inserted_id}, 201
         except ValidationError as error:
             return error.errors(), 400
+        except DuplicateKeyError:
+            return {"error": "Quiz with the same title already exists"}, 409
+
 
 
 class QuizDetailsResource(Resource):
