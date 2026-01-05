@@ -13,7 +13,7 @@ interface QuizCreatorContextType {
   questions: QuizQuestion[];
   setQuestions: React.Dispatch<React.SetStateAction<QuizQuestion[]>>;
   addQuestion: (type: QuizType) => void;
-  createQuiz: () => string | null;
+  createQuiz: () => Promise<string | null | undefined>;
   updateQuestion: (
     id: string,
     field: keyof QuizQuestion,
