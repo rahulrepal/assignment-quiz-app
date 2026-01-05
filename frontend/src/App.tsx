@@ -1,19 +1,25 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./components/shared/ProtectedRoute";
+import {
+  QuizCreatorPage,
+  QuizDetailsPage,
+  QuizListingPage,
+  QuizResultPage,
+} from "@/features/quiz/pages";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<h1>Listing page</h1>} />
-        <Route path="/quizzes/:quizId" element={<h1>Quiz page</h1>} />
-        <Route path="/quizzes/:quizId/result" element={<h1>Result page</h1>} />
+        <Route path="/" element={<QuizListingPage />} />
+        <Route path="/quizzes/:quizId" element={<QuizDetailsPage />} />
+        <Route path="/quizzes/:quizId/result" element={<QuizResultPage />} />
         <Route path="/quizzes/login" element={<h1>Login page</h1>} />
         <Route
           path="/quizzes/create"
           element={
             <ProtectedRoute>
-              <h1>Create Quiz page</h1>
+              <QuizCreatorPage />
             </ProtectedRoute>
           }
         />
