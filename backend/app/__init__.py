@@ -17,6 +17,7 @@ def create_app():
     )
 
     from .routes import register_routes
+
     register_routes(api)
 
     api.init_app(app)

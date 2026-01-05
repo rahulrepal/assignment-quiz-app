@@ -7,6 +7,7 @@ QuestionType = Literal["mcq", "boolean"]  # extend as required
 OptionType = List[str]
 AnswerType = Union[str, bool]
 
+
 class QuestionSchema(BaseModel):
     type: QuestionType = Field(..., description="Type of question")
     question: str = Field(
@@ -62,6 +63,7 @@ class QuizSchema(BaseModel):
     created_at: datetime
     updated_at: datetime
 
+
 class QuizCreateSchema(BaseModel):
     title: str = Field(
         ..., min_length=1, max_length=200, description="Title of the quiz"
@@ -69,6 +71,7 @@ class QuizCreateSchema(BaseModel):
     questions: List[QuestionSchema] = Field(
         ..., min_items=1, description="List of questions in the quiz"
     )
+
 
 class QuizSubmissionSchema(BaseModel):
     answers: Dict[str, AnswerType]

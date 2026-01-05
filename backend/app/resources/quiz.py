@@ -31,7 +31,6 @@ class QuizResource(Resource):
             return {"error": "Quiz with the same title already exists"}, 409
 
 
-
 class QuizDetailsResource(Resource):
     def get(self, quiz_id):
         quiz = get_quiz(quiz_id)
