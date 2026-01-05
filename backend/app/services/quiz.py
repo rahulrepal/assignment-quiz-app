@@ -4,12 +4,15 @@ from bson import ObjectId
 from uuid import uuid4
 from app.schema.quiz import QuizCreateSchema, QuizSchema, QuizSubmissionSchema
 
+# TODO : Create a base to abstract common DB operations
 
-def get_quiz(quiz_id, source=None):
-    if not source:
-        source = {}
 
-    return db.quizzes.find_one({"_id": ObjectId(quiz_id)}, source)
+def get_quiz_by_id(quiz_id):
+    return db.quizzes.find_one(
+        {
+            "_id": ObjectId(quiz_id),
+        }
+    )
 
 
 def normalize_answer(answer):
@@ -62,7 +65,10 @@ def create_quiz(quiz: QuizCreateSchema, admin_id):
     return str(result.inserted_id)
 
 
-def list_quizzes(exclude_question=True):
+def list_quizzes(filters=None, exclude_question=True):
+    if not filters:
+        filters = {}
+
     source = {"title": 1, "created_at": 1, "updated_at": 1, "created_by": 1}
 
     if not exclude_question:
@@ -71,6 +77,7 @@ def list_quizzes(exclude_question=True):
     quizzes = db.quizzes.find(
         {
             "is_deleted": False,
+            **filters,
         },
         source,
     )

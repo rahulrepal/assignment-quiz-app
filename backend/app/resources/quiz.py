@@ -3,9 +3,8 @@ from flask_restful import Resource
 from flask_jwt_extended import jwt_required, get_jwt, get_jwt_identity
 from pymongo.errors import DuplicateKeyError
 from pydantic import ValidationError
-from app.services.quiz import list_quizzes, create_quiz, get_quiz, evaluate_quiz
+from app.services.quiz import list_quizzes, create_quiz, get_quiz_by_id, evaluate_quiz
 from app.schema.quiz import (
-    QuizSchema,
     QuizCreateSchema,
     QuizSubmissionSchema,
 )
@@ -33,7 +32,7 @@ class QuizResource(Resource):
 
 class QuizDetailsResource(Resource):
     def get(self, quiz_id):
-        quiz = get_quiz(quiz_id)
+        quiz = get_quiz_by_id(quiz_id)
 
         if not quiz:
             return {"error": "Quiz not found"}, 404
@@ -65,7 +64,7 @@ class QuizSubmissionResource(Resource):
         except ValidationError as error:
             return error.errors(), 400
 
-        quiz = get_quiz(quiz_id)
+        quiz = get_quiz_by_id(quiz_id)
 
         if not quiz:
             return {"error": "Quiz not found"}, 404
