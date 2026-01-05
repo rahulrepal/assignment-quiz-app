@@ -16,5 +16,8 @@ def create_app():
         app, resources={r"/api/*": {"origins": app.config.get("CORS_ORIGINS", "*")}}
     )
 
+    from .routes import register_routes
+    register_routes(api)
+
     api.init_app(app)
     return app
