@@ -5,8 +5,11 @@ import {
   type TypedUseSelectorHook,
 } from "react-redux";
 import { baseApi } from "./base.api";
+import authReducer from "@/features/auth/store/auth.slice"
+
 export const store = configureStore({
   reducer: {
+    auth: authReducer,
     [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
