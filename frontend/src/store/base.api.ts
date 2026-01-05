@@ -17,4 +17,5 @@ export const baseApi = createApi({
     },
   }),
   endpoints: () => ({}),
+  tagTypes: ["quiz"], // <-- Added provided tag
 });
