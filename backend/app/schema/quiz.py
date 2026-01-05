@@ -40,7 +40,7 @@ class QuestionSchema(BaseModel):
                     "invalid_mcq_answer", "MCQ answer must be one of the options"
                 )
         elif self.type == "boolean":
-            if self.options is not None:
+            if len(self.options) == 0:
                 raise PydanticCustomError(
                     "invalid_boolean_options", "Boolean question must not have options"
                 )
