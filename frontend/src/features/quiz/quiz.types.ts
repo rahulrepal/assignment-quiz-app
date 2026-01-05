@@ -1,14 +1,14 @@
 import type { ListResponse } from "@/types/api.types";
 
 export type QuizType = "mcq" | "boolean";
-export type QuizOptionType = string[];
+export type QuizOptionType = string;
 export type QuizAnswerType = string | boolean;
 
 export type QuizQuestion = {
   id: string;
   type: QuizType;
   question: string;
-  options: QuizOptionType;
+  options: QuizOptionType[];
   answer: QuizAnswerType;
   points: number;
 };
