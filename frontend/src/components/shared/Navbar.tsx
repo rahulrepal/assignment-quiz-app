@@ -18,9 +18,9 @@ export function Navbar({
   const classes = cn("w-screen bg-white border-b border-gray-200", className);
   return (
     <nav className={classes}>
-      <div className="flex items-center justify-between max-w-4xl mx-auto">
+      <div className="flex items-center h-16 justify-between max-w-4xl mx-auto">
         {!hideTitle && (
-          <div className="flex items-center gap-2 h-16 px-4 ">
+          <div className="flex items-center gap-2  px-4 ">
             <BookOpen className="h-8 w-8 text-blue-600" />
             <h1 className="text-xl font-semibold text-gray-900">{title}</h1>
           </div>
