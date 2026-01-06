@@ -1,5 +1,5 @@
 import React, { Component, type ReactNode } from "react";
-import { AlertCircle, RefreshCcw, Home, Bug } from "lucide-react";
+import { AlertCircle, RefreshCcw, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -33,7 +33,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     };
   }
 
-  static getDerivedStateFromError(error: Error): Partial<ErrorBoundaryState> {
+  static getDerivedStateFromError(_: Error): Partial<ErrorBoundaryState> {
     return { hasError: true };
   }
 
@@ -68,7 +68,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
         return this.props.fallback;
       }
 
-      const { error, errorInfo } = this.state;
+      const { error } = this.state;
 
       return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 flex items-center justify-center p-4">
