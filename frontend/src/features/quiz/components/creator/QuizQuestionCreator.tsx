@@ -33,7 +33,7 @@ export function QuizQuestionCreator({
     <Card>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle>
+          <CardTitle className="text-base">
             <div className="flex items-center gap-2">
               {title}
               <span className="px-2 py-1  rounded-full text-xs font-medium bg-blue-600 text-white">

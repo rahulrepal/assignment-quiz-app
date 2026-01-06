@@ -101,7 +101,7 @@ export function QuizAttempt({ quiz }: QuizAttemptProps) {
       </div>
       <Card>
         <CardHeader>
-          <CardTitle>{currentQuestion.question}</CardTitle>
+          <CardTitle className="text-base">{currentQuestion.question}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           {renderQuestion()}

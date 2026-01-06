@@ -37,7 +37,7 @@ export function LoginPage({}: LoginPageProps) {
       <main className="flex flex-1 items-center justify-center px-4">
         <Card className="w-full max-w-md h-full">
           <CardHeader className="space-y-1">
-            <CardTitle>Login to your account</CardTitle>
+            <CardTitle className="text-base">Login to your account</CardTitle>
             <p className="text-sm text-muted-foreground">
               Enter your credentials to continue
             </p>
