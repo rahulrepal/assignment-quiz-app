@@ -6,6 +6,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/shared";
+import { ArrowRight } from "lucide-react";
 
 // FIXME: Can be divided into components
 export interface QuizAttemptProps {
@@ -115,7 +117,7 @@ export function QuizAttempt({ quiz }: QuizAttemptProps) {
               <Button onClick={handleNextQuestion}>Next</Button>
             ) : (
               <Button onClick={submitQuizHandler} disabled={isSubmitDisabled}>
-                Submit Quiz
+                Submit Quiz {isSubmitQuizLoading ? <Spinner /> : <ArrowRight />}
               </Button>
             )}
           </div>

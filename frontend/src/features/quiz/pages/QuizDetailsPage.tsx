@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { Navbar } from "@/components/shared";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { QuizAttempt } from "@/features/quiz/components";
+import { QuizAttempt, QuizSkeleton } from "@/features/quiz/components";
 
 export interface QuizDetailsPageProps {}
 
@@ -44,7 +44,7 @@ export function QuizDetailsPage({}: QuizDetailsPageProps) {
         hideTitle
       />
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {isLoading && <p>Loading quiz details...</p>}
+        {isLoading && <QuizSkeleton />}
         {!isLoading && isSuccess && quiz && (
           <QuizAttempt quiz={quiz} />
         )}

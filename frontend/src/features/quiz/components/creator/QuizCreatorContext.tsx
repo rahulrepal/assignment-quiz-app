@@ -29,6 +29,7 @@ interface QuizCreatorContextType {
   ) => void;
   errors: string[];
   setErrors: React.Dispatch<React.SetStateAction<string[]>>;
+  isCreateQuizLoading: boolean;
 }
 
 const QuizCreatorContext = createContext<QuizCreatorContextType | undefined>(
@@ -53,7 +54,8 @@ export function QuizCreatorProvider({ children }: QuizCreatorProviderProps) {
     removeOption,
     updateOptions,
     errors,
-    setErrors
+    setErrors,
+    isCreateQuizLoading
   } = useQuizCreator();
   const value = useMemo(
     () => ({
@@ -69,7 +71,8 @@ export function QuizCreatorProvider({ children }: QuizCreatorProviderProps) {
       removeOption,
       updateOptions,
       errors,
-      setErrors
+      setErrors,
+      isCreateQuizLoading
     }),
     [
       title,
@@ -84,7 +87,8 @@ export function QuizCreatorProvider({ children }: QuizCreatorProviderProps) {
       removeOption,
       updateOptions,
       errors,
-      setErrors
+      setErrors,
+      isCreateQuizLoading
     ]
   );
   return (

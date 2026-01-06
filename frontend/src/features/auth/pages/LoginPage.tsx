@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/shared";
+import { Navbar, Spinner } from "@/components/shared";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -17,7 +17,8 @@ export interface LoginPageProps {}
 
 export function LoginPage({}: LoginPageProps) {
   const navigate = useNavigate();
-  const { username, setUsername, password, setPassword, login } = useLogin();
+  const { username, setUsername, password, setPassword, login, isLoading } =
+    useLogin();
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Navbar
@@ -67,8 +68,13 @@ export function LoginPage({}: LoginPageProps) {
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-3">
-            <Button type="submit" className="w-full" onClick={login}>
-              Login <ArrowRight />
+            <Button
+              type="submit"
+              className="w-full"
+              onClick={login}
+              disabled={isLoading}
+            >
+              Login {isLoading ? <Spinner /> : <ArrowRight />}
             </Button>
             <span className="text-xs text-center text-muted-foreground flex gap-2 items-start">
               <Lock className="w-4 h-4" /> Only admins can access this panel

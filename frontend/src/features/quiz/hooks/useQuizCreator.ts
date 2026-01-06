@@ -6,7 +6,8 @@ import { toast } from "react-toastify";
 export function useQuizCreator() {
   const [title, setTitle] = useState("");
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
-  const [createQuizMutation] = useCreateQuizMutation();
+  const [createQuizMutation, { isLoading: isCreateQuizLoading }] =
+    useCreateQuizMutation();
   const [errors, setErrors] = useState<string[]>([]);
 
   const _resolveOptions = useCallback(
@@ -196,5 +197,6 @@ export function useQuizCreator() {
     updateOptions,
     errors,
     setErrors,
+    isCreateQuizLoading
   };
 }

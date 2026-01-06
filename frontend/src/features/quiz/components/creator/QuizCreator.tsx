@@ -6,13 +6,21 @@ import { QuizQuestionCreator } from "./QuizQuestionCreator";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Plus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Spinner } from "@/components/shared";
 
 export interface QuizCreatorProps {}
 
 export function QuizCreator({}: QuizCreatorProps) {
   const navigate = useNavigate();
-  const { title, setTitle, questions, addQuestion, errors, createQuiz } =
-    useQuizCreatorContext();
+  const {
+    title,
+    setTitle,
+    questions,
+    addQuestion,
+    errors,
+    createQuiz,
+    isCreateQuizLoading,
+  } = useQuizCreatorContext();
 
   const createQuizHandler = async () => {
     const result = await createQuiz();
@@ -21,7 +29,8 @@ export function QuizCreator({}: QuizCreatorProps) {
     }
   };
 
-  const isCreateDisabled = title.trim() === "" || questions.length === 0;
+  const isCreateDisabled =
+    title.trim() === "" || questions.length === 0 || isCreateQuizLoading;
   return (
     <div className="space-y-4">
       <div className="space-y-2">
@@ -78,7 +87,7 @@ export function QuizCreator({}: QuizCreatorProps) {
       </div>
       <div className="flex justify-end">
         <Button disabled={isCreateDisabled} onClick={createQuizHandler}>
-          Create Quiz <ArrowRight />
+          Create Quiz {isCreateQuizLoading ? <Spinner /> : <ArrowRight />}
         </Button>
       </div>
     </div>

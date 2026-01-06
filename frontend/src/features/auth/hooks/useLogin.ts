@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export function useLogin() {
   const navigate = useNavigate();
-  const [loginMutation] = useLoginMutation();
+  const [loginMutation, { isLoading }] = useLoginMutation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -34,6 +34,7 @@ export function useLogin() {
     password,
     setPassword,
     isValid,
-    login
+    login,
+    isLoading,
   };
 }
