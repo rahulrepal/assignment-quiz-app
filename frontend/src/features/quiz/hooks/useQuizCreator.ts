@@ -2,8 +2,11 @@ import { useCallback, useState } from "react";
 import type { QuizCreatePayload, QuizQuestion, QuizType } from "../quiz.types";
 import { useCreateQuizMutation } from "../store/quiz.api";
 import { toast } from "react-toastify";
+import { useAppDispatch } from "@/store";
+import { clearToken } from "@/features/auth/store";
 
 export function useQuizCreator() {
+  const dispatch = useAppDispatch();
   const [title, setTitle] = useState("");
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [createQuizMutation, { isLoading: isCreateQuizLoading }] =
@@ -156,6 +159,35 @@ export function useQuizCreator() {
     return errors;
   }, [title, questions]);
 
+  const _handleCreateQuizError = useCallback((err: any) => {
+    const status = err?.status;
+    const message =
+      err?.data?.message ||
+      err?.data?.error ||
+      "Failed to create quiz. Please try again.";
+
+    switch (status) {
+      case 409:
+        toast.error("Quiz with the same title already exists");
+        break;
+
+      // FIXME: Handle this centrally
+      case 403:
+      case 401:
+        toast.error("Session expired. Please login again.");
+        dispatch(clearToken());
+        break;
+
+      case 400:
+        toast.error(message);
+        break;
+
+      default:
+        toast.error(message);
+        console.error("Create quiz failed:", err);
+    }
+  }, []);
+
   const createQuiz = useCallback(async () => {
     const errors = validateQuiz();
     setErrors(errors);
@@ -179,9 +211,15 @@ export function useQuizCreator() {
         return result.id;
       }
     } catch (error) {
-      toast.error("Failed to create quiz. Please try again.");
+      _handleCreateQuizError(error);
     }
-  }, [title, questions, createQuizMutation, validateQuiz]);
+  }, [
+    title,
+    questions,
+    createQuizMutation,
+    validateQuiz,
+    _handleCreateQuizError,
+  ]);
 
   return {
     title,
@@ -197,6 +235,6 @@ export function useQuizCreator() {
     updateOptions,
     errors,
     setErrors,
-    isCreateQuizLoading
+    isCreateQuizLoading,
   };
 }
