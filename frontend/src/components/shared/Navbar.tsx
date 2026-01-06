@@ -15,7 +15,7 @@ export function Navbar({
   actions,
   hideTitle = false,
 }: NavbarProps) {
-  const classes = cn("w-screen bg-white border-b border-gray-200", className);
+  const classes = cn("w-screen bg-white/70 backdrop-blur-md border border-white/30 sticky top-0 z-50 ", className);
   return (
     <nav className={classes}>
       <div className="flex items-center h-16 justify-between max-w-4xl mx-auto">
