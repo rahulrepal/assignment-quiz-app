@@ -94,6 +94,20 @@ The following items outline potential future enhancements, grouped by product ca
 5. **Extended Answer Types**
    - Support additional answer formats such as image-based answers or rich content, keeping extensibility in mind.
 
+6. **Refresh Token Support**
+   - Introduce refresh tokens to allow short-lived access tokens while maintaining a smooth user experience.
+   - Improve overall security by reducing the lifetime of access tokens.
+
+7. **Admin-Controlled Ordering**
+   - Introduce an explicit `order` field for each question.
+   - Questions will be served sorted by this field, allowing admins to control the exact sequence.
+   - This approach is deterministic, easy to reason about, and works well with pagination and future UI features such as drag-and-drop reordering in the admin panel.
+
+8. **Admin Quiz Management View**
+   - Provide a dedicated dashboard where admins can view all quizzes they have created.
+   - Display key metadata such as quiz title, creation date, status (draft/published), and total number of questions.
+   - Enable quick actions like edit, delete, publish/unpublish, and reorder questions.
+
 ---
 
 ### Longer-Term / Exploratory Ideas
@@ -112,6 +126,11 @@ These features are intentionally deferred as they introduce additional complexit
 4. **Communication & Engagement**
    - Add newsletters or notifications to keep users engaged with new quizzes and events.
 
+5. **Basic Performance Metrics**
+   - Show high-level performance insights for each quiz, such as:
+     - Number of attempts
+     - Average score
+     - Completion rate
 ---
 
 ## Code & Infrastructure Improvements
